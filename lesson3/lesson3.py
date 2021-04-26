@@ -1,5 +1,4 @@
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import sklearn.metrics
@@ -7,7 +6,6 @@ from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import GridSearchCV
 
 # Task 1
 boston = load_boston()
@@ -43,15 +41,14 @@ print(r2)
 # Модель на основе деревьев работает точнее
 
 # Task 3
-help(RandomForestRegressor)
+help(RandomForestRegressor.feature_importances_)
 importances = model.feature_importances_
-print("Summ of features: " + str(sum(importances)))
+print("Sum of features: " + str(sum(importances)))
 
 feats = {}
 for feature, importance in zip(feature_names, model.feature_importances_):
     feats[feature] = importance
 
 sorted_tuples = sorted(feats.items(), key=lambda item: item[1], reverse=True)
-print(sorted_tuples)
 print(f"The most important features: {sorted_tuples[0]}, {sorted_tuples[1]}")
 
